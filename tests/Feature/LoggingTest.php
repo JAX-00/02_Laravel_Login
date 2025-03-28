@@ -37,4 +37,25 @@ class LoggingTest extends TestCase
 
         self::assertTrue(true);
     }
+
+    public function testChannel()
+    {
+        $slackLogger = Log::channel("slack");
+        $slackLogger->error("Hello Slack"); // Send to slack channel
+
+        Log::info("Hello Laravel"); // Send to default channel
+
+        self::assertTrue(true);
+    }
+
+    public function testFileHandler()
+    {
+        $fileLogger = Log::channel("file");
+        $fileLogger->info("Hello file Handler");
+        $fileLogger->warning("Hello file Handler");
+        $fileLogger->error("Hello File Handler");
+        $fileLogger->critical("Hello File Handler");
+
+        self::assertTrue(true);
+    }
 }
